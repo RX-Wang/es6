@@ -14,19 +14,35 @@ console.log(a());*/
 var Promise = require('bluebird');
 function getName(flag){
     new Promise(function (resolve, reject) {
-        // throw new Error('崩了');
         if(flag)
             resolve('你好，我叫张三');
-        else
+        else{}
+        // throw new Error('崩了');
             reject(new Error('获取姓名失败'));
-    }).then(function(data){
-        console.log('success:%s',data);
-    }).catch(function(err){
+    }).then(function(data1){
+        console.log('then1:%s',data1);
+        return new Promise(function (reso,rejj) {
+           setTimeout(function(){
+               reso('我是第一个then中的新promise返回的值111','我是第一个then中的新promise返回的值222');//resolve 只能返回一个值
+           },1000);
+        });
+        /*setTimeout(function(){
+            return data1;       //回调函数中用return时，下一个then不会接收到数据
+        },1000);
+        return data1; */          //直接return的时候，下一个then能接收到数据
+    }).then(
+        function(data21,data22){
+          console.log('then21:%s,then22:%s',data21,data22);   //data22  是undefind
+        },
+        function(err2){
+            console.log(err2);
+        }
+    ).catch(function(err){
         console.log('error:%s',err);
     });
 }
 
-getName(false);
+getName(true);
 
 /*var p1 = new Promise(function(resolve,reject){
    resolve('p1');
