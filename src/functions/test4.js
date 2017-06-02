@@ -11,14 +11,17 @@ console.log(a());*/
  * 获取用户姓名
  * @param flag
  */
-var Promise = require('bluebird');
+const Promise = require('bluebird');
 function getName(flag){
     new Promise(function (resolve, reject) {
-        if(flag)
-            resolve('你好，我叫张三');
-        else{}
+        if(flag){
+           setTimeout(function () {
+               resolve('你好，我叫张三');
+           },500);
+
+        }else{}
         // throw new Error('崩了');
-            reject(new Error('获取姓名失败'));
+        //     reject(new Error('获取姓名失败'));
     }).then(function(data1){
         console.log('then1:%s',data1);
         return new Promise(function (reso,rejj) {
@@ -33,16 +36,26 @@ function getName(flag){
     }).then(
         function(data21,data22){
           console.log('then21:%s,then22:%s',data21,data22);   //data22  是undefind
+
+                return new Promise(function (reso) {
+                    setTimeout(function () {
+                        reso('程咬金');
+                    },1000);
+                })
+
         },
         function(err2){
             console.log(err2);
         }
-    ).catch(function(err){
+    ).then(function (data) {
+        console.log(data);
+        console.log('半路杀出个程咬金');
+    }).catch(function(err){
         console.log('error:%s',err);
     });
 }
 
-getName(true);
+//getName(true);
 
 /*var p1 = new Promise(function(resolve,reject){
    resolve('p1');
@@ -62,3 +75,12 @@ Promise.all([p1,p2,p3])
         console.log('如果有一个Promise报错，其他成功的都不会被返回：' + err);
     }) ;*/
 
+new Promise(function (reso,rej) {
+    console.log('第一次中')
+    reso('来自第一层的信息');
+}).then(function (resoData) {
+    console.log('第二次中')
+   console.log(resoData);
+}).catch(function (err) {
+    console.log(err.message);
+});
