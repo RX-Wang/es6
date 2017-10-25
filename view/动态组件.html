@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- component标签和v-bind:is 是重点 -->
+        <component :is="currentView"></component>
+    </div>
+<script>
+    const com1 = {
+        template : '<span>com1</span>'
+    };
+    const com2 = {
+        template : '<span>com2</span>'
+    };
+    const com3 = {
+        template : '<span>com3</span>'
+    };
+    const vm = new Vue({
+        el : '#app',
+        data : {
+            currentView : 'com1'
+        },
+        components : {
+            com1,
+            com2,
+            com3
+        }
+    });
+</script>
+</body>
+</html>

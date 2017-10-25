@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<input id="app"
+        type="checkbox"
+        v-model="toggle"
+        v-bind:true-value="a"
+        v-bind:false-value="b"
+>
+<child my-message="hello!"></child>
+
+<script>
+    Vue.component('child', {
+            // camelCase in JavaScript
+            props: ['myMessage'],
+            template: '<span>{{ myMessage }}</span>'
+        })
+    
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            toggle : '',
+            a : '',
+            b : ''
+        }
+    })
+</script>
+</body>
+</html>

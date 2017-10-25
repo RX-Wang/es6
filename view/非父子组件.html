@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <comp1></comp1>
+        <comp2></comp2>
+    </div>
+<script>
+    const bus = new Vue();
+    Vue.component('comp1', {
+            methods : {
+                sendMsg(){
+                    bus.$emit('fromComp1',this.$refs.input.value);
+                }
+            },
+            template: '<div>\
+                            <input ref="input" />\
+                            <button v-on:click="sendMsg()">点击</button>\
+                       </div>'    
+        })
+    Vue.component('comp2', {
+            data : function(){
+                        return {
+                            Comp1 : 0
+                        }
+                    },
+            created(){
+                const _this = this;
+                bus.$on('fromComp1',function(val){
+                    this.Comp1 = val;
+                }.bind(_this))
+            },
+            template: '<span>{{Comp1}} </span>'
+        })
+    ;
+    const vm = new Vue({
+        el : '#app'
+    });
+</script>
+</body>
+</html>

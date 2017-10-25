@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='inputMsg'/>
+        <!-- 这个是静态绑定 <child my-message="hello!"></child> -->
+        <!-- 这个是父组件给子组件动态传递属性 -->
+        <child :my-message="inputMsg"></child>
+    </div>
+<script>
+    Vue.component('child', {
+            // camelCase in JavaScript
+            // props: ['myMessage'],
+            //自定义校验
+            // props : {
+            //     myMessage : {
+            //         validator : function(value){
+            //             return value > 10;
+            //         }
+            //     }
+            // },
+            props : {
+                myMessage : {
+                    type : Number,
+                    required : true
+                }
+            },
+            computed : {
+                addMyMessage : function(){
+                    let a = this.myMessage;
+                    return ++a;
+                }
+            },
+            template: '<span>{{addMyMessage}} </span>'
+        })
+    const vm = new Vue({
+        el: '#app',
+        data: { 
+            inputMsg : 1
+        }
+    })
+</script>
+</body>
+</html>
