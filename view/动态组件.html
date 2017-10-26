@@ -7,18 +7,21 @@
 </head>
 <body>
     <div id="app">
-        <!-- component标签和v-bind:is 是重点 -->
+        <p style="color:red">component标签和v-bind:is 是重点</p>
+        <input type="radio" name="dong" v-model="currentView" value="com1"/>com1
+        <input type="radio" name="dong" v-model="currentView" value="com2"/>com2
+        <input type="radio" name="dong" v-model="currentView" value="com3"/>com3
         <component :is="currentView"></component>
     </div>
 <script>
     const com1 = {
-        template : '<span>com1</span>'
+        template : '<p>com1</p>'
     };
     const com2 = {
-        template : '<span>com2</span>'
+        template : '<p>com2</p>'
     };
     const com3 = {
-        template : '<span>com3</span>'
+        template : '<p>com3</p>'
     };
     const vm = new Vue({
         el : '#app',
