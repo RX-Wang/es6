@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p style="color:red">
+            1、:params,方式传参<br/>
+            2、监听动态路由参数的变化：<br/>
+                watch : { $route (to,from){}}  <br/>
+                或者：beforeRouteUpdate(to,from,next){ ...; next()}
+        </p>
+
+
+        <h1>Hello App!</h1>
+        <p>
+            <router-link to="/user/张三">张三</router-link>
+            <router-link to="/user/李四">李四</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        //待匹配的模板
+        const User = {
+            template: `
+                <div>
+                    User {{ $route.params.id }}
+                </div>
+                `,
+            // beforeRouteUpdate (to,from,next){
+            //     console.log(`from:${from.path}---to:${to.path}`);
+            //     next();
+            // }
+            watch:{ 
+                $route (to,from){
+                    console.log(`from:${from.path}---to:${to.path}`);   
+                }
+            }
+        }
+        const Ha = {
+            template: `
+                <div>
+                    HAHA {{ $route.params.id }}
+                </div>
+                `
+        };
+        //路由数组
+        const routes = [
+            // 动态路径参数 以冒号开头
+            //通过name属性给该路由命名，便于通过 router.push()方法来改变url。
+            // { path: '/user/:id', name : 'user',component: User },    //这个是没有重定向的
+            { path: '/user/:id', redirect : '/ha/:id',name : 'user' },
+            { path: '/ha/:id',component: Ha },
+        ]
+        //路由对象
+        const router = new VueRouter({
+            routes // （缩写）相当于 routes: routes
+        })
+        //Vue实例
+        const app = new Vue({
+            router
+        }).$mount('#app')
+        //动态改变URL
+        router.push({name : 'user', params : {id : '王五'}});
+    </script>
+</body>
+
+</html>

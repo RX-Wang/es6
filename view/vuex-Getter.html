@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul style="color:red">
+            <li>
+                1、getters中的函数接收第一个参数 state，这个参数会自动传递。
+            </li>
+            <li>
+                2、getters中的函数也可以接收第二个参数 getters，这个参数会自动传递。
+            </li>
+        </ul>
+        <Counter></Counter>
+    </div>
+    <script>
+        //组件
+        const Counter = {
+            template : `
+                <div>
+                    <h2>一共做完了{{doneThingsCount}}件事情</h2>
+                    <ul>
+                        <li v-for="thing in doneThings"> 做完了的事情：{{thing.text}}</li>
+                    </ul>
+                </div>
+            `,
+            computed : {
+                doneThings : ()=> store.getters.doneTodos,
+                doneThingsCount : ()=> store.getters.doneTodosCount
+            }
+        };
+
+        //Vuex的store
+        const store = new Vuex.Store({
+            state: {
+                todos: [
+                  { id: 1, text: '事情一', done: true },
+                  { id: 2, text: '事情二', done: false },
+                  { id: 3, text: '事情三', done: false },
+                  { id: 4, text: '事情四', done: true },
+                  { id: 5, text: '事情五', done: false }
+                ]
+              },
+            getters: {
+                //1、getters中的函数接收第一个参数 state，这个参数会自动传递。
+                doneTodos: state => {
+                    return state.todos.filter(todo => todo.done)
+                },
+                //2、getters中的函数也可以接收第二个参数 getters，这个参数会自动传递。
+                doneTodosCount : (state,getters) => getters.doneTodos.length
+            }
+        })
+        // Vue.use(Vuex);
+        
+        //Vue实例
+        const app = new Vue({
+            el : '#app',
+            store,
+            components : {Counter},
+        });
+    </script>
+</body>
+
+</html>
