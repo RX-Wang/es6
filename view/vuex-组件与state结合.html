@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul style="color:red">
+            <li>
+                1、如果在vue根实例中注入了store，则可以在所有子组件中通过：this.$store来获取
+            </li>
+            <li>
+                2、store.commit(type),类似于Redux中的store.dispatch(action);
+                触发指定的action，通过匹配action.type达到变更state的目的
+            </li>
+        </ul>
+        <Counter></Counter>
+    </div>
+    <script>
+        //组件
+        const Counter = {
+            template : `
+                <div>
+                    <h3>{{privateState}}</h3>
+                    我是store中的count：{{count}}
+                    <h4>我是store中的其他属性：{{getNum01}}</h4>
+                    <h4>我是store中的其他属性：{{getNum02}}</h4>
+                    <h4>我是store中的其他属性：{{getNum03}}</h4>
+                    <button @click='addOne'>count加1</button>    
+                </div>
+            `,
+            /* 组件仍然可以有私有属性 */
+            data : () => {
+                return {
+                    privateState :'我是Conter组件私有的属性：privateState,没有存放在Vuex的store中。'
+                }
+            },
+            /*  1、对于只使用store中一个state时，可以用普通方式获取 store中的state  */
+            
+            /* computed : {
+                count(){
+                    //两种方式都可以
+                    return store.state.count; 
+                    //下面的方式是因为在vue根实例中将store注入到所有子组件中了，
+                    //所以可以通过this.$store来获取。
+                    //且只能用在 有{}的非箭头函数块中。
+                    // return this.$store.state.count  
+                }
+            }, */
+            /**
+             *  2、要使用store中多个state的时候可以使用   Vuex.mapState 方法,该方法接收一个Object，然后返回一个Object。
+             */
+            /* computed : Vuex.mapState({
+                count(){ return this.$store.state.count},
+                getNum01 : ()=> store.state.num01,
+                getNum02 : ()=> store.state.num02,
+                getNum03 : ()=> store.state.num03,
+            }), */
+
+            /**
+             * 3、也可以这么写，将本地的computed和 mapState的computed相结合(使用ES6的解构方法进行解构)
+             */
+            computed : {
+                count(){ return this.$store.state.count},
+                ...Vuex.mapState({
+                    getNum01 : ()=> store.state.num01,
+                    getNum02 : ()=> store.state.num02,
+                    getNum03 : ()=> store.state.num03,
+                })
+            },
+            methods : {
+                addOne(){
+                    this.$store.commit('add');
+                }
+            }
+        };
+
+        //Vuex的store
+        const store = new Vuex.Store({
+            state: {
+                count: 0,
+                num01 : 1,
+                num02 : 2,
+                num03 : 3
+            },
+            mutations : {
+                add(state){
+                    state.count++
+                }
+            }
+        })
+        // Vue.use(Vuex);
+        
+        //Vue实例
+        const app = new Vue({
+            el : '#app',
+            store,
+            components : {Counter},
+            // template: `
+            //     <div class="app">
+            //         <slote></slote>
+            //         <counter></counter>
+            //     </div>
+            // `
+        });
+    </script>
+</body>
+
+</html>
