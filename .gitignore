@@ -15,3 +15,8 @@ package-lock.json
 .idea/**/gradle.xml
 .idea/**/libraries
 .idea/**/mongoSettings.xml
+.idea/markdown-navigator.xml
+.idea/vcs.xml
+view/vue-表单控件.html
+view/vuex-基础入门.html
+view/服务端渲染/

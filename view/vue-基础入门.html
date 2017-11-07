@@ -6,13 +6,16 @@
     <script src="./js/vue.js"></script>
 </head>
 <body>
-<input id="app"
-        type="checkbox"
-        v-model="toggle"
-        v-bind:true-value="a"
-        v-bind:false-value="b"
->
-<child my-message="hello!"></child>
+    <div id="app">
+        <input
+            type="checkbox"
+            v-model="toggle"
+        >
+        <p>{{toggle}}--{{a}}--{{b}}</p>
+        <input v-focus type="text"/>
+        <child my-message="hello!"></child>
+    </div>
+    
 
 <script>
     Vue.component('child', {
@@ -21,15 +24,20 @@
             template: '<span>{{ myMessage }}</span>'
         })
     
-
+    Vue.directive('focus',{
+        inserted : function(el){
+            el.focus();
+        }
+    })
     const vm = new Vue({
         el: '#app',
         data: {
             toggle : '',
-            a : '',
-            b : ''
+            a : 'checkA',
+            b : 'checkB'
         }
     })
+    
 </script>
 </body>
 </html>
