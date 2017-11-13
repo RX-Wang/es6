@@ -33,16 +33,18 @@
                     User {{ $route.params.id }}
                 </div>
                 `,
-            // beforeRouteUpdate (to,from,next){
-            //     console.log(`from:${from.path}---to:${to.path}`);
-            //     next();
-            // }
+            //使用 导航守卫来监测
+            /* beforeRouteUpdate (to,from,next){
+                 alert(`from:${from.path}---to:${to.path}`);
+                 next();
+             },*/
+            // 使用 watch方法监测$route的变化
             watch:{ 
                 $route (to,from){
-                    console.log(`from:${from.path}---to:${to.path}`);   
+                    alert(`from:${from.path}---to:${to.path}`);
                 }
             }
-        }
+        };
         const Ha = {
             template: `
                 <div>
@@ -54,8 +56,8 @@
         const routes = [
             // 动态路径参数 以冒号开头
             //通过name属性给该路由命名，便于通过 router.push()方法来改变url。
-            // { path: '/user/:id', name : 'user',component: User },    //这个是没有重定向的
-            { path: '/user/:id', redirect : '/ha/:id',name : 'user' },
+             { path: '/user/:id', name : 'user',component: User },    //这个是没有重定向的
+//            { path: '/user/:id', redirect : '/ha/:id',name : 'user' },
             { path: '/ha/:id',component: Ha },
         ]
         //路由对象

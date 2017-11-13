@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul style="color:red">
+
+        </ul>
+        <ele></ele>
+    </div>
+    <script>
+        const Child = {
+            render : function (createElement) {
+                return createElement('p','这里是text内容');
+            }
+        };
+
+        Vue.component('ele',{
+            render : function (createElement) {
+                let ChildNode = createElement(Child);
+                return createElement('div',[
+                    //虽然写了两个，但是只能渲染一个。
+                    ChildNode,
+                    ChildNode
+                ]);
+            }
+        });
+
+        //Vue实例
+        const app = new Vue({
+            el : '#app'
+        });
+    </script>
+</body>
+
+</html>

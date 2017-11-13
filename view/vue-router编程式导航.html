@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul style="color:red">
+            <li>
+                方式一、 单纯的路由跳转，不传参</br>
+                <code>例：this.$router.push('userPosts');</code>
+            </li>
+            <li>
+                方式二、 通过 path + query 方式传递 Get方式的query传参和路由跳转。</br>
+                <code>
+                    例：router.push({ path: 'register', query: { plan: 'private' }})
+                </code>
+            </li>
+            <li>
+                方式三、 通过 name + params 方式传递 Get方式的params 传参和路由跳转。</br>
+                <ul>
+                    <li>
+                        方式1、需要在路由配置中加name属性，来与这里的name属性相对应</br>
+                        <code>
+                            例：router.push({ name : 'userPosts', params : {userId} });
+                        </code>
+                    </li>
+                    <li>
+                        方式2、直接拼接成路由的url的形式，不需要在路由配置中添加name属性。</br>
+                        <code>
+                            例：router.push({path : `/userPosts/${userId}`});
+                        </code>
+                    </li>
+                </ul>
+                
+            </li>
+        </ul>
+        <p><i>注意：在组件的methods中：this.$router.push() 和 router.push() 这两种方式都可以。</i></p>
+        <router-link to="/foo">Go to Foo</router-link>
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+<script>
+    const Foo = {
+        template: `
+                    <div class="user">
+                      <h2>Foo </h2>
+                      <router-link to="/userHome">Go to UserHome</router-link>
+                    </div>
+                  `,
+    };
+    const userId = '123456';
+    const UserHome = {
+        template: `
+                    <div>
+                        <h1>Home</h1>
+                        <p @click="toOnlyPosts" style="cursor: pointer;">Go to posts（单纯的路由跳转，不传参）</p>
+                        <p @click="toUserPosts" style="cursor: pointer;">Go to UserPosts（name + params 方式的路由跳转和传参）</p>
+                        <p @click="toRegister" style="cursor: pointer;">Go to Register（path + query 方式路由跳转和传参）</p>
+                    </div>
+                  `,
+        methods : {
+            toOnlyPosts(){
+                // ----> 单纯的路由跳转，不传参
+                this.$router.push('userPosts');
+            },
+            toRegister(){
+                // ---->  通过 path + query 方式传递 Get方式的query传参和路由跳转。
+                router.push({ path: 'register', query: { plan: 'private' }})
+            },
+            toUserPosts(){
+                // ----> 通过 name + params 方式传递 Get方式的params 传参和路由跳转。
+                router.push({
+                    /* 方式一：需要在路由配置中加name属性，来与这里的name属性相对应 */
+                    name : 'userPosts',
+                    params : {userId}
+                    /* 方式二：直接拼接成路由的url的形式，不需要在路由配置中添加name属性。 */
+                    // path : `/userPosts/${userId}`  //这个可以用
+                });
+            }        
+        }
+    };
+    const register = { template: `
+        <div>
+            <h1>Register</h1>
+            query : {{getQuery}}
+        </div>
+    `,
+        computed : {
+            getQuery(){
+                console.log(this.$route.query.plan);
+                return this.$route.query.plan;
+            }
+        }         
+    }
+    const UserPostsOnly = { template: `
+        <div>
+            <h1>PostsOnly</h1>
+        </div>
+    ` }
+    const UserPosts = { template: `
+        <div>
+            <h1>Posts</h1>
+            params:{{$route.params.userId}}
+        </div>
+    ` }
+
+    /* 路由 */                            
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/foo',
+                component: Foo,
+            },
+            {
+                path: '/userHome',
+                component: UserHome,
+            },
+            {
+                path: '/userPosts',
+                component: UserPostsOnly,
+            },
+            {
+                path: '/userPosts/:userId',
+                name:'userPosts',
+                component: UserPosts,
+            },
+            {
+                path: '/register',
+                component: register,
+            },
+
+        ]
+    });
+
+    const app = new Vue({
+        router
+    }).$mount('#app')
+</script>
+</body>
+</html>

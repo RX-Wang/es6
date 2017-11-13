@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul style="color:red">
+            <li>
+                1、在路由中使用children属性，来添加嵌套路由
+            </li>
+            <li>
+                2、通常我们会给children属性添加一个path：'' 的空嵌套路由，并配上默认的嵌套模板，以防止嵌套路由匹配到的是空
+            </li>
+
+        </ul>
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+    
+
+<script>
+    const User = {
+        template: `
+                    <div class="user">
+                      <h2>User {{ $route.params.id }}</h2>
+                      <router-view></router-view>
+                    </div>
+                  `
+
+    };
+    const UserHome = { template: '<div>Home</div>' }
+    const UserProfile = { template: '<div>Profile</div>' }
+    const UserPosts = { template: '<div>Posts</div>' }
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/user/:id',
+                component: User ,
+                children: [
+                    //当前匹配到的嵌套子路由为空时，嵌套组件渲染 UserHome
+                    {
+                        path : '',
+                        component : UserHome
+                    },
+                    {
+                        // 当 /user/:id/profile 匹配成功，
+                        // UserProfile 会被渲染在 User 的 <router-view> 中
+                        path: 'profile',
+                        component: UserProfile
+                    },
+                    {
+                        // 当 /user/:id/posts 匹配成功
+                        // UserPosts 会被渲染在 User 的 <router-view> 中
+                        path: 'posts',
+                        component: UserPosts
+                    }
+                ]
+            },
+        ]
+    });
+    const app = new Vue({
+        router
+    }).$mount('#app')
+</script>
+</body>
+</html>
