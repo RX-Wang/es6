@@ -7,6 +7,7 @@
     "bluebird": "^3.5.0",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
+    "gulp": "^3.9.1",
     "vue": "^2.5.3",
     "vue-server-renderer": "^2.5.3",
     "xml2js": "^0.4.17"
