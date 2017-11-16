@@ -102,11 +102,45 @@
 
 <body>
     <div id="app">
-        <h1>这是Vuex--Module比较全面的例子</h1>
+        <!-- <h1>这是Vuex--Module比较全面的例子</h1> -->
         <Person></Person>
     </div>
     <script>
-        //组件
+        // 一.1、Module Person
+        const PersonModule = {
+            state: {
+                name    : 'Diana',
+                addr    : '地球'
+            },
+            mutations : {
+                //重名的mutation
+                changeAddr(state){
+                    state.addr = '冥王星';
+                },
+                changeAddrHome(state){
+                    state.addr = '故宫';
+                }
+            }
+        }
+
+         // 一.2、Module Student
+         const StudentModule = {
+            state: {
+                name    : 'Diana',
+                addr    : '月亮'
+            },
+            mutations : {
+                //重名的mutation
+                changeAddr(state){
+                    state.addr = '冥王星';
+                },
+                changeAddrSchool(state){
+                    state.addr = '广寒宫';
+                }
+            }
+        }
+
+        // 二、组件
         const Person = {
             template : `
                 <div>
@@ -114,7 +148,7 @@
                         <li>Diana的<b style="color:red;">家庭</b>地址：{{getHomeAddr}}</li>
                         <li>Diana的<b style="color:red;">学校</b>地址：{{getSchoolAddr}}</li>
                         </ul>
-                    <button @click='sameMutation'>不同Module中的mutation相同时</button>
+                    <button @click='sameMutation'>触发重名 mutation</button>
                     <button @click='changeAddrHome'>只更改家庭住址</button>
                     <button @click='changeAddrSchool'>只更改学校住址</button>        
                 </div>
@@ -146,40 +180,10 @@
                 }
             }
         };
-
-        // Module Person
-        const PersonModule = {
-            state: {
-                name    : 'Diana',
-                addr    : '地球'
-            },
-            mutations : {
-                //触发 具有相同名称的mutation
-                changeAddr(state){
-                    state.addr = '冥王星';
-                },
-                changeAddrHome(state){
-                    state.addr = '故宫';
-                }
-            }
-        }
-
-         // Module Student
-         const StudentModule = {
-            state: {
-                name    : 'Diana',
-                addr    : '月球'
-            },
-            mutations : {
-                changeAddr(state){
-                    state.addr = '冥王星';
-                },
-                changeAddrSchool(state){
-                    state.addr = '广寒宫';
-                }
-            }
-        }
+       
         // Vue.use(Vuex);
+
+        // 三、Vuex 的 store
         const store = new Vuex.Store({
             modules: {
                 PersonModule,
@@ -188,7 +192,7 @@
         })
 
 
-        //Vue实例
+        //四、Vue 实例
         const app = new Vue({
             el : '#app',
             store,

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../js/vue.js"></script>
-    <script src="../js/vue-router.js"></script>
-    <script src="../js/vuex.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <h1>这是一个Vuex比较全面的例子！！！！！！！！</h1>
-        <!-- <ul style="color:red">
+        <!-- <h1>这是一个Vuex比较全面的例子！！！！！！！！</h1>
+        <ul style="color:red">
             <li>
                 1、如果在vue根实例中注入了store，则可以在所有子组件中通过：this.$store来获取
             </li>
@@ -24,24 +24,37 @@
         <Person></Person>
     </div>
     <script>
-        //组件
+        // 一、组件
         const Person = {
             template : `
                 <div>
-                    <h3>{{privateState}}</h3>
-                    我是store中的age：{{age}}
-                    <h4>我是store中的属性--name ：{{getName}}</h4>
-                    <h4>我是store中的属性--sex：这个属性是通过Getter拿到的：{{chineseSex}} --- 这里是通过state获取的：{{getSex === 'girl' ? '女' : '男'}}</h4>
-                    <h4>我是store中的属性--books ：{{getBooks}}</h4>
-                    <button @click='addOne'>age同步增长1岁</button>
-                    <button @click='addDelay'>age异步增长10岁，需要有个loading图样</button>    
-                    <img src="./timg.jpeg" style="position:absolute;top:0;right:0;" :style="{display : isGrowing ? 'block' : 'none'}">
+                    <fieldset>
+                        <legend>我们是从组件的props和data中获取的：</legend>
+                        <h2>我是通过Vue的组件的 props来定义的初始值：{{money}} 元</h2>
+                        <h3>我是通过Vue的组件的 data来定义的：{{parents}}</h3>
+                    </fieldset><br/><br/><br/>
+                    <fieldset>
+                        <legend>我们是从Vuex的store中获取的：</legend>
+                        我是store中的age：{{age}}岁
+                        <h4>我是store中的属性--name ：{{getName}}</h4>
+                        <h4>我是store中的属性--sex：通过<i style="color:red">Getter</i>获取：{{chineseSex}} --- 通过<i style="color:red">state</i>获取：{{getSex === 'girl' ? '女' : '男'}}</h4>
+                        <h4>我是store中的属性--books ：{{getBooks}}</h4>
+                        <button @click='addOne'>age同步增长1岁</button>
+                        <button @click='addDelay'>age异步增长10岁，需要有个loading图样</button>    
+                        <img src="./timg.jpeg" style="width:300px" :style="{display : isGrowing ? 'block' : 'none'}">
+                    </fieldset>
                 </div>
             `,
+            props : {
+                money : {
+                    type : Number,
+                    default : 100
+                }
+            },
             /* 组件仍然可以有私有属性 */
             data : () => {
                 return {
-                    privateState :'我是Person组件私有的属性：privateState,没有存放在Vuex的store中。'
+                    parents :['爸爸','妈妈']
                 }
             },
             /* 
@@ -71,27 +84,27 @@
                 age(){ return this.$store.state.age},
                 ...Vuex.mapState({
                     getName : ()=> store.state.name,
-                    getSex : ()=> store.state.sex,
+                    getSex : ()=> store.state.sex,//girl
                     getBooks : ()=> store.state.books.join('、'),
                     isGrowing: ()=> store.state.isGrowing
                 }),
                 chineseSex(){
-                    return this.$store.getters.getChineseSex
+                    return this.$store.getters.getChineseSex  //女
                 }
             },
             methods : {
-                //触发 mutation
+                //触发 mutation ---> store.commit()
                 addOne(){
-                    this.$store.commit('addMutation');
+                    this.$store.commit('addMutation',2);
                 },
-                //触发action
+                //触发action   --->  store.dispatch()
                 addDelay(){
                     this.$store.dispatch('addAction',10);
                 }
             }
         };
 
-        //Vuex的store
+        // 二、Vuex的store
         const store = new Vuex.Store({
             // 1、state --> 状态存储
             state: {
@@ -122,20 +135,25 @@
             actions : {
                 //异步年龄增长方法
                 addAction(ctx,newNum){
+                    // 1）、加载loading图样
                     ctx.commit('growingUp');
+                    // 2）、异步获取数据
                     setTimeout(function(){
+                        // 3)、触发 指定的 Mutation，变更 age 属性
                         ctx.commit('addMutation',newNum);
+                        // 4）、取消loading图样
                         ctx.commit('growedUp');
                     },3000);
                 }
             }
         })
+        
         // Vue.use(Vuex);
         
-        //Vue实例
+        // 三、Vue实例
         const app = new Vue({
             el : '#app',
-            store,
+            store,  //将 store注入到组件中。
             components : {Person},
             // template: `
             //     <div class="app">
