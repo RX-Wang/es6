@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>总结：</legend>
+            <p style="color:red">
+                v-modul:自动将Vue实例中定义的属性与Dom表单组件的vaule属性进行绑定。
+                <ul>
+                    <li>
+                        radio:默认与其逻辑值绑定，即：选定：true、取消选定：false，除非设置了value属性。
+                    </li>
+                    <li>
+                        checkbox:对应的vue.data.someAttribute是一个Array类型，并会自动插入和删除数组元素
+                        <ul>
+                            <li>
+                                如果：checkbox中只设置了：v-model="toggle" v-bind:true-value="a" v-bind:false-value="b",<br/>
+                                vue实例中设置了：toggle:'', a:'ValueA',b='ValueB',那么选中的时候：toggle=ValueA,反之为'ValueB'
+                            </li>
+                            <li>
+                                如果：checkbox 中设置了：  value="checkboxValue",v-model="toggle";<br/>
+                                vue实例中设置了：toggle ：[]，那么选中的时候：toggle=['checkboxValue']，反之为：toggle=[]
+                            </li>
+                            <li>
+                                如果：checkbox中设置了：v-model='toggle'<br/>
+                                vue实例中设置了：toggle："",那么选中的时候：toggle=true,反之为：false；
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        select：如果没有设置value属性，则默认取text值。
+                    </li>
+                </ul>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Input:</legend>
+            <input type="text" v-model="inputVal">
+            lazyInput : <input type="text" v-model.lazy="inputValLazy" />
+            <br>
+            <p>Input: {{ inputVal }}</p>
+            <p>inputValLazy: {{ inputValLazy }}</p>
+        </fieldset>
+        <fieldset>
+            <legend>Checkbox:</legend>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+            <label for="mike">Mike</label>
+            <br>
+            <p>checkbox: {{ checkedNames }}</p>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Radio:</legend>
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label>
+            <br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two">Two</label>
+            <br>
+            <p>radio: {{ picked }}</p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Select:</legend>
+            <select v-model="selected">
+                <option value="">---请选择---</option>
+                <option value="A：这个是通过value设置的值">A</option>
+                <option>B：这个没有设置value属性,所以直接取了text</option>
+                <option value="选了C">C</option>
+                </select>
+                <br>
+            <span>Selected: {{ selected }}</span>
+        </fieldset>
+    </div>
+<script>
+    
+    const vm = new Vue({
+        el   : '#app',
+        data : {
+            inputVal    : '',
+            inputValLazy : '',
+            checkedNames: [],
+            picked : '',
+            selected : ''
+        }
+    });
+</script>
+</body>
+</html>

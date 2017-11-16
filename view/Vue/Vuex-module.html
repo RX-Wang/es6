@@ -1,0 +1,200 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p style="color:red">
+            <ul>
+                
+            </ul>
+        </p>
+    </div>
+    <script>
+       const moduleA = {
+        state: { name : 'moduleA' },
+        getters : {
+            getMAName : state => {
+                return state.name;
+            }
+        },
+        mutations : {
+            changeMAName(state,newName){
+                console.log(state);
+                state.name = newName;
+            }
+        },
+        actions : {
+            changeMANameAction(context,newName){
+                context.commit('changeMAName',newName);
+            }
+        }
+      }
+      
+      const moduleB = {
+        state: {  name : 'moduleB'  },
+        getters : {
+            getMBName : state => {
+                return state.name;
+            }
+        },
+        mutations : {
+            changeMBName(state,newName){
+                state.name = newName;
+            }
+        },
+        actions : {
+            changeMBNameAction(context,newName){
+                context.commit('changeMBName',newName);
+            }
+        }
+      }
+      
+      const store = new Vuex.Store({
+        modules: {
+          a: moduleA,
+          b: moduleB
+        }
+      })
+      
+      console.log(store.state.a) // -> moduleA 的状态
+      console.log(store.state.b) // -> moduleB 的状态
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>这是Vuex--Module比较全面的例子</h1>
+        <Person></Person>
+    </div>
+    <script>
+        //组件
+        const Person = {
+            template : `
+                <div>
+                    <ul>
+                        <li>Diana的<b style="color:red;">家庭</b>地址：{{getHomeAddr}}</li>
+                        <li>Diana的<b style="color:red;">学校</b>地址：{{getSchoolAddr}}</li>
+                        </ul>
+                    <button @click='sameMutation'>不同Module中的mutation相同时</button>
+                    <button @click='changeAddrHome'>只更改家庭住址</button>
+                    <button @click='changeAddrSchool'>只更改学校住址</button>        
+                </div>
+            `,
+            /* 组件仍然可以有私有属性 */
+            data : () => {
+                return {
+                    privateState :'我是Person组件私有的属性：privateState,没有存放在Vuex的store中。'
+                }
+            },
+            computed : {
+                ...Vuex.mapState({
+                    getHomeAddr : ()=> store.state.PersonModule.addr,
+                    getSchoolAddr : ()=> store.state.StudentModule.addr
+                })
+            },
+            methods : {
+                //触发 具有相同名称的mutation
+                sameMutation(){
+                    this.$store.commit('changeAddr');
+                },
+                //只更改家庭住址
+                changeAddrHome(){
+                    this.$store.commit('changeAddrHome');
+                },
+                //只更改学校住址
+                changeAddrSchool(){
+                    this.$store.commit('changeAddrSchool');
+                }
+            }
+        };
+
+        // Module Person
+        const PersonModule = {
+            state: {
+                name    : 'Diana',
+                addr    : '地球'
+            },
+            mutations : {
+                //触发 具有相同名称的mutation
+                changeAddr(state){
+                    state.addr = '冥王星';
+                },
+                changeAddrHome(state){
+                    state.addr = '故宫';
+                }
+            }
+        }
+
+         // Module Student
+         const StudentModule = {
+            state: {
+                name    : 'Diana',
+                addr    : '月球'
+            },
+            mutations : {
+                changeAddr(state){
+                    state.addr = '冥王星';
+                },
+                changeAddrSchool(state){
+                    state.addr = '广寒宫';
+                }
+            }
+        }
+        // Vue.use(Vuex);
+        const store = new Vuex.Store({
+            modules: {
+                PersonModule,
+                StudentModule
+            }
+        })
+
+
+        //Vue实例
+        const app = new Vue({
+            el : '#app',
+            store,
+            components : {Person},
+        });
+    </script>
+</body>
+
+</html>

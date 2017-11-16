@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>这是一个Vuex比较全面的例子！！！！！！！！</h1>
+        <!-- <ul style="color:red">
+            <li>
+                1、如果在vue根实例中注入了store，则可以在所有子组件中通过：this.$store来获取
+            </li>
+            <li>
+                2、store.commit(type),类似于Redux中的store.dispatch(action);
+                触发指定的action，通过匹配action.type达到变更state的目的
+            </li>
+        </ul> -->
+        <Person></Person>
+    </div>
+    <script>
+        //组件
+        const Person = {
+            template : `
+                <div>
+                    <h3>{{privateState}}</h3>
+                    我是store中的age：{{age}}
+                    <h4>我是store中的属性--name ：{{getName}}</h4>
+                    <h4>我是store中的属性--sex：这个属性是通过Getter拿到的：{{chineseSex}} --- 这里是通过state获取的：{{getSex === 'girl' ? '女' : '男'}}</h4>
+                    <h4>我是store中的属性--books ：{{getBooks}}</h4>
+                    <button @click='addOne'>age同步增长1岁</button>
+                    <button @click='addDelay'>age异步增长10岁，需要有个loading图样</button>    
+                    <img src="./timg.jpeg" style="position:absolute;top:0;right:0;" :style="{display : isGrowing ? 'block' : 'none'}">
+                </div>
+            `,
+            /* 组件仍然可以有私有属性 */
+            data : () => {
+                return {
+                    privateState :'我是Person组件私有的属性：privateState,没有存放在Vuex的store中。'
+                }
+            },
+            /* 
+            1、对于只使用store中一个state时，可以用普通方式获取 store中的state 
+            computed : {
+                age(){
+                    //两种方式都可以
+                    return store.state.age; 
+                    //下面的方式是因为在vue根实例中将store注入到所有子组件中了，
+                    //所以可以通过this.$store来获取。
+                    //且只能用在 有{}的非箭头函数块中。
+                    // return this.$store.state.age  
+                }
+            },
+            2、要使用store中多个state的时候可以使用   Vuex.mapState 方法,该方法接收一个Object，然后返回一个Object。
+            computed : Vuex.mapState({
+                age(){ return this.$store.state.age},
+                getName : ()=> store.state.name,
+                getSex : ()=> store.state.sex,
+                getBooks : ()=> store.state.books.join('、'),
+            }), */
+
+            /**
+             * 3、也可以这么写，将本地的computed和 mapState的computed相结合(使用ES6的解构方法进行解构)
+             */
+            computed : {
+                age(){ return this.$store.state.age},
+                ...Vuex.mapState({
+                    getName : ()=> store.state.name,
+                    getSex : ()=> store.state.sex,
+                    getBooks : ()=> store.state.books.join('、'),
+                    isGrowing: ()=> store.state.isGrowing
+                }),
+                chineseSex(){
+                    return this.$store.getters.getChineseSex
+                }
+            },
+            methods : {
+                //触发 mutation
+                addOne(){
+                    this.$store.commit('addMutation');
+                },
+                //触发action
+                addDelay(){
+                    this.$store.dispatch('addAction',10);
+                }
+            }
+        };
+
+        //Vuex的store
+        const store = new Vuex.Store({
+            // 1、state --> 状态存储
+            state: {
+                age     : 10,
+                name    : 'Diana',
+                sex     : 'girl',
+                books   : ['语文','数学','英语'],
+                isGrowing : false
+            },
+            // 2、getters --> 便捷的状态更改及获取方法
+            getters : {
+                getChineseSex : state => state.sex === 'girl' ? '女' : '男'
+            },
+            // 3、mutations --> 状态更新方法，只能是同步方法
+            mutations : {
+                //同步年龄增长方法
+                addMutation(state,newNum){
+                    newNum !== undefined ? state.age += newNum : state.age++
+                },
+                growingUp(state){
+                    state.isGrowing = true;
+                },
+                growedUp(state){
+                    state.isGrowing = false;
+                }
+            },
+            // 4、actions --> 类似于 Mutation，可包含异步方法
+            actions : {
+                //异步年龄增长方法
+                addAction(ctx,newNum){
+                    ctx.commit('growingUp');
+                    setTimeout(function(){
+                        ctx.commit('addMutation',newNum);
+                        ctx.commit('growedUp');
+                    },3000);
+                }
+            }
+        })
+        // Vue.use(Vuex);
+        
+        //Vue实例
+        const app = new Vue({
+            el : '#app',
+            store,
+            components : {Person},
+            // template: `
+            //     <div class="app">
+            //         <slote></slote>
+            //         <person></person>
+            //     </div>
+            // `
+        });
+    </script>
+</body>
+
+</html>
