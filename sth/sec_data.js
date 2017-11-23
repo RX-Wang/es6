@@ -2,7 +2,7 @@ exports.data = {
     "roomStatusInfo": [
         {
             "day": "20171122",
-            "remain": 5,
+            "remain": 1,
             "roomTotal": 8,
             "handled": 3,
             "unhandled": 0,
@@ -10,7 +10,7 @@ exports.data = {
         },
         {
             "day": "20171123",
-            "remain": 7,
+            "remain": 2,
             "roomTotal": 8,
             "handled": 1,
             "unhandled": 0,
@@ -18,7 +18,7 @@ exports.data = {
         },
         {
             "day": "20171124",
-            "remain": 8,
+            "remain": 3,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -26,7 +26,7 @@ exports.data = {
         },
         {
             "day": "20171125",
-            "remain": 8,
+            "remain": 4,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -34,7 +34,7 @@ exports.data = {
         },
         {
             "day": "20171126",
-            "remain": 8,
+            "remain": 5,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -42,7 +42,7 @@ exports.data = {
         },
         {
             "day": "20171127",
-            "remain": 8,
+            "remain": 6,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -50,7 +50,7 @@ exports.data = {
         },
         {
             "day": "20171128",
-            "remain": 8,
+            "remain": 7,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -66,7 +66,7 @@ exports.data = {
         },
         {
             "day": "20171130",
-            "remain": 8,
+            "remain": 9,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -74,7 +74,7 @@ exports.data = {
         },
         {
             "day": "20171201",
-            "remain": 8,
+            "remain": 10,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -82,7 +82,7 @@ exports.data = {
         },
         {
             "day": "20171202",
-            "remain": 8,
+            "remain": 11,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -90,7 +90,7 @@ exports.data = {
         },
         {
             "day": "20171203",
-            "remain": 8,
+            "remain": 12,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -98,7 +98,7 @@ exports.data = {
         },
         {
             "day": "20171204",
-            "remain": 8,
+            "remain": 13,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -106,7 +106,7 @@ exports.data = {
         },
         {
             "day": "20171205",
-            "remain": 8,
+            "remain": 14,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -114,7 +114,7 @@ exports.data = {
         },
         {
             "day": "20171206",
-            "remain": 8,
+            "remain": 15,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -122,7 +122,7 @@ exports.data = {
         },
         {
             "day": "20171207",
-            "remain": 8,
+            "remain": 16,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -130,7 +130,7 @@ exports.data = {
         },
         {
             "day": "20171208",
-            "remain": 8,
+            "remain": 17,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -138,7 +138,7 @@ exports.data = {
         },
         {
             "day": "20171209",
-            "remain": 8,
+            "remain": 18,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -146,7 +146,7 @@ exports.data = {
         },
         {
             "day": "20171210",
-            "remain": 8,
+            "remain": 19,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -154,7 +154,7 @@ exports.data = {
         },
         {
             "day": "20171211",
-            "remain": 8,
+            "remain": 20,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -162,7 +162,7 @@ exports.data = {
         },
         {
             "day": "20171212",
-            "remain": 8,
+            "remain": 21,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -170,7 +170,7 @@ exports.data = {
         },
         {
             "day": "20171213",
-            "remain": 8,
+            "remain": 22,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -178,7 +178,7 @@ exports.data = {
         },
         {
             "day": "20171214",
-            "remain": 8,
+            "remain": 23,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -186,7 +186,7 @@ exports.data = {
         },
         {
             "day": "20171215",
-            "remain": 8,
+            "remain": 24,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -194,7 +194,7 @@ exports.data = {
         },
         {
             "day": "20171216",
-            "remain": 8,
+            "remain": 25,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -202,7 +202,7 @@ exports.data = {
         },
         {
             "day": "20171217",
-            "remain": 8,
+            "remain": 26,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -210,7 +210,7 @@ exports.data = {
         },
         {
             "day": "20171218",
-            "remain": 8,
+            "remain": 27,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -218,7 +218,7 @@ exports.data = {
         },
         {
             "day": "20171219",
-            "remain": 8,
+            "remain": 28,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -226,7 +226,7 @@ exports.data = {
         },
         {
             "day": "20171220",
-            "remain": 8,
+            "remain": 29,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
@@ -234,7 +234,7 @@ exports.data = {
         },
         {
             "day": "20171221",
-            "remain": 8,
+            "remain": 30,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
