@@ -1,4 +1,4 @@
-export default data = {
+exports.data = {
     "roomStatusInfo": [
         {
             "day": "20171122",
