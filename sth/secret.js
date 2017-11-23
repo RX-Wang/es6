@@ -76,7 +76,7 @@ function recursiveDecrypt(data, items,_token,_iv) {
         //如果是Object：
         let _keyArray = Object.keys(data);
         _keyArray.sort(function (a,b) {
-            return (data[a] instanceof Array) ? 1 : -1;
+            return (data[a] instanceof Array || data[a] instanceof Object) ? 1 : -1;
         });
         for (let _k of _keyArray) {
             if ((typeof data[_k] === 'number' || typeof data[_k] === 'string') && items.indexOf(_k) > -1) {
