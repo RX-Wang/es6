@@ -9,10 +9,28 @@ function sliceToken(_token, len = 16) {
 }
 
 
-function f(){
-    
+function f(data,items){
+    //如果是数组：
+    if(data instanceof Array){
+        for(let v of data){
+            if(v instanceof Object){
+                f(v,items);
+            }
+        }
+    } else {
+        //如果是Object：
+        for(let _k in data){
+            if((typeof data[_k] === 'number' || typeof data[_k] === 'string') && items.indexOf(_k) > -1) {
+                data[_k] = '你好呀,糖糖';
+            }else{
+                f(data[_k],items);
+            }
+        }
+    }
+    console.log(data);
+    return;
 }
-
+f(_data_,['phone','day']);
 
 
 
@@ -52,7 +70,7 @@ function _decrypt(text, _token, iv) {
   );
   return result.toString(CryptoJS.enc.Utf8);
 }
-export default{
+/* export default{
   encrypto(text, _token, _iv) {
     const _en = _encrypt(text, _token, _iv);
     console.log(_en.toString());
@@ -63,4 +81,4 @@ export default{
     console.log(_de);
     return _de;
   },
-};
+}; */
