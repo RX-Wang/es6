@@ -1,380 +1,213 @@
+/*
 exports.data = {
-    "roomStatusInfo": [
-        {
-            "day": "20171122",
-            "remain": 1,
-            "roomTotal": 8,
-            "handled": 3,
-            "unhandled": 0,
-            "unhandledOrderCount": 0
-        },
-        {
+    "status": 0,
+    "message": "成功",
+    "data": {
+        "roomStatusInfo": [{
             "day": "20171123",
-            "remain": 2,
+            "remain": 7,
             "roomTotal": 8,
             "handled": 1,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171124",
-            "remain": 3,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171125",
-            "remain": 4,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171126",
-            "remain": 5,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171127",
-            "remain": 6,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171128",
-            "remain": 7,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171129",
             "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171130",
-            "remain": 9,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171201",
-            "remain": 10,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171202",
-            "remain": 11,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171203",
-            "remain": 12,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171204",
-            "remain": 13,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171205",
-            "remain": 14,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171206",
-            "remain": 15,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171207",
-            "remain": 16,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171208",
-            "remain": 17,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171209",
-            "remain": 18,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171210",
-            "remain": 19,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171211",
-            "remain": 20,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171212",
-            "remain": 21,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171213",
-            "remain": 22,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171214",
-            "remain": 23,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171215",
-            "remain": 24,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171216",
-            "remain": 25,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171217",
-            "remain": 26,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171218",
-            "remain": 27,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171219",
-            "remain": 28,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171220",
-            "remain": 29,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        },
-        {
+        }, {
             "day": "20171221",
-            "remain": 30,
+            "remain": 8,
             "roomTotal": 8,
             "handled": 0,
             "unhandled": 0,
             "unhandledOrderCount": 0
-        }
-    ],
-    "orderInfo": [
-        {
-            "orderId": 18188,
-            "orderCode": "2017112000001458",
-            "roomTypeId": 5228,
-            "roomTypeName": "大床房",
-            "roomId": 6441,
-            "roomName": "1002",
-            "type": 2,
-            "checkinDate": "20171120140000",
-            "checkoutDate": "20171123120000",
-            "channelId": 1,
-            "channelName": "上门散客",
-            "channelColor": "#547CD5",
-            "name": "范芳芳",
-            "guestNamePinyin": "fan fang fang",
-            "phone": "18201458971",
-            "guestList": [
-                {
-                    "id": 11137,
-                    "isPrimary": true,
-                    "name": "范芳芳",
-                    "namePinyin": "fan fang fang",
-                    "phone": "18201458971",
-                    "certificateType": "护照",
-                    "certificateId": null,
-                    "certificateNumber": "123444",
-                    "certificateAddress": "",
-                    "imageUrl": null,
-                    "birthday": null,
-                    "gender": null,
-                    "nation": null,
-                    "authority": null,
-                    "validityPeriod": null
-                }
-            ],
-            "price": 90000,
-            "totalReceipt": 0,
-            "totalDeposit": 0,
-            "roomFee": 90000,
-            "otherFee": 0,
-            "payed": 0,
-            "prepay": 0,
-            "prepayTypeId": 1,
-            "prepayTypeName": "现金",
-            "deposit": 0,
-            "depositTypeId": 1,
-            "depositTypeName": "现金",
-            "status": 2,
-            "relatedOrder": null,
-            "relatedOrderId": null,
-            "batchCode": "2017112000001458",
-            "gmtCreate": 1511183440000,
-            "gmtModify": 1511183447000,
-            "otaOrderId": null,
-            "changeRoomStatus": 0,
-            "remark": null,
-            "guestPasswd": null,
-            "makeCardStatus": 0,
-            "passwordStartDate": "20171120211047",
-            "passwordEndDate": "20171123210000",
-            "innId": 3660,
-            "otaPayType": null,
-            "otaGuaranteeType": null,
-            "guestName": "范芳芳",
-            "guestMobile": "18201458971"
-        },
-        {
-            "orderId": 18191,
-            "orderCode": "2017112000001461",
-            "roomTypeId": 5228,
-            "roomTypeName": "大床房",
-            "roomId": 6439,
-            "roomName": "1004",
-            "type": 2,
-            "checkinDate": "20171120140000",
-            "checkoutDate": "20171123120000",
-            "channelId": 1,
-            "channelName": "上门散客",
-            "channelColor": "#547CD5",
-            "name": "哈哈",
-            "guestNamePinyin": "ha ha",
-            "phone": "18510431991",
-            "guestList": [
-                {
-                    "id": 11140,
-                    "isPrimary": true,
-                    "name": "哈哈",
-                    "namePinyin": "ha ha",
-                    "phone": "18510431991",
-                    "certificateType": "护照",
-                    "certificateId": null,
-                    "certificateNumber": "111111",
-                    "certificateAddress": "",
-                    "imageUrl": null,
-                    "birthday": null,
-                    "gender": null,
-                    "nation": null,
-                    "authority": null,
-                    "validityPeriod": null
-                }
-            ],
-            "price": 90000,
-            "totalReceipt": 0,
-            "totalDeposit": 0,
-            "roomFee": 90000,
-            "otherFee": 0,
-            "payed": 0,
-            "prepay": 0,
-            "prepayTypeId": 1,
-            "prepayTypeName": "现金",
-            "deposit": 0,
-            "depositTypeId": 1,
-            "depositTypeName": "现金",
-            "status": 1,
-            "relatedOrder": null,
-            "relatedOrderId": null,
-            "batchCode": "2017112000001461",
-            "gmtCreate": 1511183626000,
-            "gmtModify": 1511183626000,
-            "otaOrderId": null,
-            "changeRoomStatus": 0,
-            "remark": null,
-            "guestPasswd": null,
-            "makeCardStatus": 0,
-            "passwordStartDate": "20171120140000",
-            "passwordEndDate": "20171123210000",
-            "innId": 3660,
-            "otaPayType": null,
-            "otaGuaranteeType": null,
-            "guestName": "哈哈",
-            "guestMobile": "18510431991"
-        },
-        {
+        }, {"day": "20171222", "remain": 8, "roomTotal": 8, "handled": 0, "unhandled": 0, "unhandledOrderCount": 0}],
+        "orderInfo": [{
             "orderId": 18204,
             "orderCode": "2017112100004638",
             "roomTypeId": 5229,
@@ -389,26 +222,24 @@ exports.data = {
             "channelColor": "#2EB6A9",
             "name": "2",
             "guestNamePinyin": "2",
-            "phone": "18338188153",
-            "guestList": [
-                {
-                    "id": 11154,
-                    "isPrimary": true,
-                    "name": "2",
-                    "namePinyin": "2",
-                    "phone": "18338188153",
-                    "certificateType": "护照",
-                    "certificateId": null,
-                    "certificateNumber": "2",
-                    "certificateAddress": "",
-                    "imageUrl": null,
-                    "birthday": null,
-                    "gender": null,
-                    "nation": null,
-                    "authority": null,
-                    "validityPeriod": null
-                }
-            ],
+            "phone": "p2WLLfGZbFTId4VWZCvt3w==",
+            "guestList": [{
+                "id": 11154,
+                "isPrimary": true,
+                "name": "2",
+                "namePinyin": "2",
+                "phone": "ZgZnCmzfK/46oLz5E/JCXA==",
+                "certificateType": "护照",
+                "certificateId": null,
+                "certificateNumber": "5UXUFcq1yESb2oS+QlPXbw==",
+                "certificateAddress": "",
+                "imageUrl": null,
+                "birthday": null,
+                "gender": null,
+                "nation": null,
+                "authority": null,
+                "validityPeriod": null
+            }],
             "price": 40000,
             "totalReceipt": 0,
             "totalDeposit": 0,
@@ -438,7 +269,41 @@ exports.data = {
             "otaPayType": null,
             "otaGuaranteeType": null,
             "guestName": "2",
-            "guestMobile": "18338188153"
+            "guestMobile": "p2WLLfGZbFTId4VWZCvt3w=="
+        }]
+    }
+}*/
+
+exports.data = {
+    "name" : "王若曦",
+    "phone" : 123456,
+    "id"	: 'd1111111',
+    "books" : {
+        "bid" : 33333,
+        "name": "语文",
+        "reader": [
+            {
+                "uid" : "r111111",
+                "name" : "張三",
+                "age" : 123456789,
+                "sex" : "男"
+            },
+            {
+                "uid" : 'r2222222',
+                "name" : "張四",
+                "age" : 123456789,
+                "sex" : "男"
+            }
+        ]
+    },
+    "friends":[
+        {
+            "fid":"f11111",
+            "name":"王五"
+        },
+        {
+            "fid":"f22222",
+            "name":"王六"
         }
     ]
-}
+};
