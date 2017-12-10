@@ -43,4 +43,7 @@
 
 #### 九、crypto加密、解密算法
 
->sth/test-crypto
+>sth/test-crypto.js
+
+#### 十、AES_CBC_PKCS加密
+>sth/test-decrytp.js
