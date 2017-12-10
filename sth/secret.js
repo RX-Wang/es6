@@ -39,14 +39,15 @@ function _encrypt(text, _token, iv) {
  * @param {* 初始化向量} iv
  */
 function _decrypt(text, _token, iv) {
+    iv = (iv || iv == 0) ? iv : 1;
     const token = sliceToken(_token, _len);
     const result = CryptoJS.AES.decrypt(
-        text, CryptoJS.enc.Utf8.parse(token),
-        {
-            iv: CryptoJS.enc.Utf8.parse(iv),
-            mode: CryptoJS.mode.CBC,
-            padding: CryptoJS.pad.Pkcs7,
-        }
+      text, CryptoJS.enc.Utf8.parse(token),
+      {
+        iv: CryptoJS.enc.Utf8.parse(iv),
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7,
+      }
     );
     return result.toString(CryptoJS.enc.Utf8);
 }
