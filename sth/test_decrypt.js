@@ -1,6 +1,10 @@
 const CryptoJS = require('crypto-js');
 
 /**
+ * AES_CBD_PCCK5/7 加解密
+ */
+
+/**
  * 加密
  * @param {*} text 
  * @param {*} _token 
