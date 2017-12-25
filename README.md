@@ -47,3 +47,9 @@
 
 #### 十、AES_CBC_PKCS加密
 >sth/test-decrytp.js
+
+#### 十一、View学习积累
+>view/Vue
+
+#### 十二、bind学习
+>sth/test-bind.js

@@ -43,9 +43,9 @@ function _decrypt(text, _token, iv) {
   const r = result.toString(CryptoJS.enc.Utf8);
   return r;
 }
-const text = 'atiqImUrzuh2QCTmSht33w==';// 密文
-const text = '406097'; // 明文
+const text = '5TsOCQlhvrq99CzKz43iqQ==';// 密文
+// const text = '123456'; // 明文
 const token = '80201532354370d7';
-const iv = 4431788;
+const iv = true;
 console.log(_decrypt(text,token,iv));
 // console.log(_encrypt(text,token,iv));
