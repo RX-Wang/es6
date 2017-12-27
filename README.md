@@ -53,3 +53,9 @@
 
 #### 十二、bind学习
 >sth/test-bind.js
+
+#### 十三、单例
+>sth/test-singleton.js
+
+#### 十四、测试CommonJS规范对包的引用规则
+>sth/test-require.js
