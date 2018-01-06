@@ -59,3 +59,5 @@
 
 #### 十四、测试CommonJS规范对包的引用规则
 >sth/test-require.js
+#### 十五、设计模式
+>/d 下面的
