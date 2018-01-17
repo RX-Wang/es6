@@ -11,6 +11,7 @@ const CryptoJS = require('crypto-js');
  * @param {*} iv 
  */
 function _encrypt(text, _token, iv) {
+  console.log(`_token：${_token}`);
   iv = (iv || iv === 0 || iv === '0') ? iv : 'false';
   console.log('加密时的iv是：',iv);
   return CryptoJS.AES.encrypt(
@@ -30,6 +31,7 @@ function _encrypt(text, _token, iv) {
  * @param {*} iv 
  */
 function _decrypt(text, _token, iv) {
+  console.log(`_token：${_token}`);
   iv = (iv || iv === 0 || iv === '0') ? iv : 'false';
   console.log('解密时的iv是：',iv);
   const result = CryptoJS.AES.decrypt(
@@ -43,9 +45,12 @@ function _decrypt(text, _token, iv) {
   const r = result.toString(CryptoJS.enc.Utf8);
   return r;
 }
-const text = '5TsOCQlhvrq99CzKz43iqQ==';// 密文
-// const text = '123456'; // 明文
-const token = '80201532354370d7';
-const iv = true;
-console.log(_decrypt(text,token,iv));
-// console.log(_encrypt(text,token,iv));
+const text = 'J0HO6vvyDWo9cQsXnG6NQ==';// 密文
+// const text = '3843867319'; // 明文
+const token = 'd7f51692ef99294b12345678';
+function subToken(token) {
+  return token.substr(0,16);
+}
+const iv = '428';
+console.log(_decrypt(text,subToken(token),iv));
+// console.log(_encrypt(text,subToken(token),iv));
