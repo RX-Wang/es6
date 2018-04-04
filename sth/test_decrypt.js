@@ -45,12 +45,12 @@ function _decrypt(text, _token, iv) {
   const r = result.toString(CryptoJS.enc.Utf8);
   return r;
 }
-const text = 'J0HO6vvyDWo9cQsXnG6NQ==';// 密文
+const text = "管家密码：333333开门成功";// 密文
 // const text = '3843867319'; // 明文
-const token = 'd7f51692ef99294b12345678';
+const token = '3970d1910605c78bd9a9da3c6cb9ca53';
 function subToken(token) {
   return token.substr(0,16);
 }
-const iv = '428';
+const iv = '1';
 console.log(_decrypt(text,subToken(token),iv));
 // console.log(_encrypt(text,subToken(token),iv));

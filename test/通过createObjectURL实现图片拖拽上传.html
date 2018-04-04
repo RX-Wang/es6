@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>图片拖拽上传</title>
+    <style rel="stylesheet">
+      .dropbox {
+        width: 300px;
+        height: 200px;
+        border: 2px dashed;
+      }
+      .obj {
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>通过：createObjectURL 实现：图片拖拽上传</h1>
+    <div id="dropbox" class="dropbox">
+        <div class="area">拖动图片到这里</div>
+    </div>
+    <div id="preview"></div>
+
+    <script type="text/javascript">
+        var dropbox = document.querySelector("#dropbox");
+        var preview = document.querySelector("#preview");
+
+        dropbox.addEventListener("dragenter", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }, false);
+
+        dropbox.addEventListener("dragover", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }, false);
+
+        dropbox.addEventListener("drop", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            console.log(e)
+            var dt = e.dataTransfer;
+            var files = dt.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = new RegExp("^image\/");
+                if (!imageType.test(file.type)) {
+                    console.log(1)
+                    continue;
+                }
+                // 填充选择的图片到展示区
+                var img = document.createElement("img");
+                img.classList.add("obj");
+                img.file = file;
+                img.src = window.URL.createObjectURL(file);
+                preview.appendChild(img);
+            }
+        }, false);
+    </script>
+  </body>
+</html>  
