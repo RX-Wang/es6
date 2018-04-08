@@ -24,14 +24,18 @@ console.log(first, rest);
 // first='a'; rest=['b','c']; */
 
 let ar = [1,2,3,4,5,6];
-/* for(let a of ar) {
+/* 
+// 数组元素不会改变
+for(let a of ar) {
   a++;
 } */
-// ar.forEach((elem) => elem++);
-/* for(let i = 0; i < ar.lenght; i++) {
+// 数组元素不会改变
+// ar.forEach((elem) => ++elem);
+// 数组元素会改变
+/* for(let i = 0; i < ar.length; i++) {
   ar[i]++;
 } */
-ar = ar.map(elem => { 
-  return ++elem;
-});
+// map 方法返回 被修改过的数组，原数组不会做任何改变。
+// 但是可以将map 的返回值赋予 原数组的变量。
+// ar = ar.map(elem => ++elem);
 console.log(ar);
