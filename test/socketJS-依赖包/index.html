@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>图片拖拽上传</title>
+    <style rel="stylesheet">
+      .dropbox {
+        width: 300px;
+        height: 200px;
+        border: 2px dashed;
+      }
+      .obj {
+        width: 300px;
+        height: 200px;
+      }
+      #traffic > li{
+        display: block;
+      }
+      #traffic span{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-color: gray;
+        margin: 5px;
+        border-radius: 50%;
+      }
+      #traffic.pass li:nth-child(1) span{
+        background-color: #0a0;
+      }
+      #traffic.wait li:nth-child(2) span{
+        background-color: #aa0;
+      }
+      #traffic.stop li:nth-child(3) span{
+        background-color: #a00;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+  </head>
+  <body>
+    <script>
+       var sock = new SockJS('http://127.0.0.1:9999/echo');
+        sock.onopen = function() {
+            console.log('open');
+            sock.send('test');
+        };
+        sock.onmessage = function(e) {
+            console.log('get server message', e.data);
+            sock.close();
+        };
+        sock.onclose = function() {
+            console.log('close');
+        };
+    </script>
+    (⊙o⊙)嗯
+    <ul id="traffic" class="pass">
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
+      </ul>
+      <script>
+          const traffic = document.getElementById("traffic");
+          function wait(time){
+            return new Promise(resolve => setTimeout(resolve, time));
+          }
+          function setState(state){
+            traffic.className = state;
+          }
+          function reset(){
+            Promise.resolve()
+              .then(setState.bind(null, "pass"))
+              .then(wait.bind(null, 3000))
+              .then(setState.bind(null, "wait"))
+              .then(wait.bind(null, 1000))
+              .then(setState.bind(null, "stop"))
+              .then(wait.bind(null, 2000))
+              .then(reset);
+          }
+          reset();
+        </script>
+  </body>
+</html>
