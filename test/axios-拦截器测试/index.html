@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Axios--拦截器</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // Add a request interceptor
+      axios.interceptors.request.use(function (config) {
+        console.log('拦截器在请求之前干坏事啦');
+        // Do something before request is sent
+        return config;
+      }, function (error) {
+        console.log('拦截器抓到错误啦');
+        // Do something with request error
+        return Promise.reject(error);
+      });
+
+      // Add a response interceptor
+      axios.interceptors.response.use(function (response) {
+        console.log('拦截器在拿到响应结果以后干坏事啦');
+        // Do something with response data
+        return response;
+      }, function (error) {
+        console.log('拦截器在拿到响应结果时报错啦');
+        // Do something with response error
+        return Promise.reject(error);
+      });
+
+      axios.get('http://www.baidu.com')
+        .then((res) => {
+          console.log('请求百度成功---', res);
+        })
+        .catch((err) => {
+          console.log('请求百度失败---', err);
+        })
+  </script>
+</body>
+</html>  
