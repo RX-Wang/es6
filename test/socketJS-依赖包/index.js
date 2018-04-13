@@ -17,7 +17,7 @@ echo.on('connection', function(conn) {
 
 var server = http.createServer(function(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  fs.readFile(path.join(__dirname, 'index.html'), function(err, data) {
+  fs.readFile(path.join(__dirname, 'index2.html'), function(err, data) {
     res.writeHead(200, {"Content-Type": "text/html"});
     res.write(data.toString());
     res.end();
