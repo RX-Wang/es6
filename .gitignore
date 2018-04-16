@@ -20,3 +20,4 @@ package-lock.json
 view/vue-表单控件.html
 view/vuex-基础入门.html
 view/服务端渲染/
+.vscode/
