@@ -1,0 +1,1 @@
+alert('我是前端alert');
