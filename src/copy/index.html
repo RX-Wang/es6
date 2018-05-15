@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+</head>
+<body>
+  <!-- Target -->
+    <textarea id="bar">
+        U2FsdGVkX19TYWx0ZWRfX86lpY3PUitXMJT6MYkEgpBBQZcNvcUGgkK8Js4Js33D\nuOkP3iQggGMcRqN4XdH4DXlP4N2HYSfq/Vd2CMi6pUDO5vpAP5967bEqm/zENn0V\nnmo3D+mSOGMzCUBMnWqlRXlzBpuJ66/tOIvM07WlAuy2ObLbEJ9sHVf2n6uC02WI\nevTkaJ3hzC4dIQU2iuUZWaCzTaa/74XuvObOh03sjxlEat08z/n8hhjm+y6uL+TQ\nC9L+TZQNFsbjr0qyOMruUpzDzhi29voGhoY/5M9Ep3IYeMCEo3fSSgHrOYB3VJyA\nt4NLdYa5GV/5gpMksZBvVXqokcvWMPNRX4DB5h6bkHM=\n\n
+    </textarea>
+
+    <!-- Trigger -->
+    <button class="btn" data-clipboard-action="copy" data-clipboard-target="#bar">
+        Cut to clipboard
+    </button>
+    <div id="a" style="width: 500px;height: 400px;border: 1px solid;">
+
+    </div>
+    <script>
+      var clipboard = new ClipboardJS('.btn');
+
+      clipboard.on('success', function(e) {
+        // var tt = e.text.replace(/\\n/g, '\\\n').replace(/\\/g, '');
+        // console.info(tt);
+        // tt = tt.replace(/\\/g, '');
+        var tt = 'U2FsdGVkX19TYWx0ZWRfX86lpY3PUitXMJT6MYkEgpBBQZcNvcUGgkK8Js4Js33D\nuOkP3iQggGMcRqN4XdH4DXlP4N2HYSfq/Vd2CMi6pUDO5vpAP5967bEqm/zENn0V\nnmo3D+mSOGMzCUBMnWqlRXlzBpuJ66/tOIvM07WlAuy2ObLbEJ9sHVf2n6uC02WI\nevTkaJ3hzC4dIQU2iuUZWaCzTaa/74XuvObOh03sjxlEat08z/n8hhjm+y6uL+TQ\nC9L+TZQNFsbjr0qyOMruUpzDzhi29voGhoY/5M9Ep3IYeMCEo3fSSgHrOYB3VJyA\nt4NLdYa5GV/5gpMksZBvVXqokcvWMPNRX4DB5h6bkHM=\n\n';
+        tt = tt.replace(/\\n/g, '\\\n').replace(/\\/g, '');
+        console.info(tt);
+        e.clearSelection();
+        document.getElementById('a').innerHTML = tt;
+      });
+
+      clipboard.on('error', function(e) {
+          console.error('Action:', e.action);
+          console.error('Trigger:', e.trigger);
+      });
+    </script>
+  </body>
+  </html>

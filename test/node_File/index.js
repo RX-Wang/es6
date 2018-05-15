@@ -8,6 +8,8 @@
 
 const Koa = require('koa');
 const Router = require('koa-router');
+const fs = require('fs');
+const path = require('path');
 
 const c1 = require('./c1');
 const c2 = require('./c2');
@@ -23,3 +25,5 @@ app.use(router.routes())
    .use(router.allowedMethods());
 
 app.listen(3000);
+
+// console.log(fs.existsSync(path.join(__dirname, 'dist1')));
