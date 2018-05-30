@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>上下(左右)定位解构</title>
+    <style rel="stylesheet">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .top {
+            height: 100px;
+            background-color: black;
+        }
+        .down {
+            position: absolute;
+            top: 100px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .down-left{
+            position: absolute;
+            background-color: rgb(69, 66, 214);
+            left: 0;
+            right: 90%;
+            height: 100%;
+        }
+        .down-right{
+            position: absolute;
+            background-color: rgb(211, 127, 236);
+            left: 10%;
+            right: 0;
+            height: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="top"></div>
+    <div class="down">
+        <div class="down-left"></div>
+        <div class="down-right">
+            123
+        </div>
+    </div>
+  </body>
+</html>  
