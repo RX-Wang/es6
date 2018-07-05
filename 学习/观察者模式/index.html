@@ -5,9 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>观察者模式</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 </head>
 <body>
-    
+    <button id="addNewObserver">添加新的观察者</button><br />
+    目标（被点击时，通知所有的订阅者）：<input id="mainCheckbox" type="checkbox"/>
+    <div id="observersContainer">
+        所有的观察者：
+    </div>
+    <script>
+        var controlCheckbox = document.getElementById('mainCheckbox'),
+            addBtn = document.getElementById('addNewObserver'),
+            container = document.getElementById('observersContainer');
+        
+        extend(new Subject(), controlCheckbox);
+        controlCheckbox.onclick = function() {
+            controlCheckbox.Notify(controlCheckbox.checked);
+        }
+        addBtn.onclick = AddNewObserver;
+        function AddNewObserver() {
+            var check = document.createElement('input');
+            check.type = 'checkbox';
+            extend(new Observer(), check);
+            check.Update = function (value) {
+                this.checked = value;
+            };
+            controlCheckbox.AddObserver(check);
+            container.appendChild(check);
+        }
+    </script>
 </body>
 </html>
