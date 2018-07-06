@@ -18,3 +18,6 @@ getType(bool);
 getType(fun);
 getType(arr);
 getType(obj);
+getType(undefined);
+getType(null);
+getType(NaN);
