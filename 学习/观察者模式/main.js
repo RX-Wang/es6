@@ -1,4 +1,15 @@
 /**
+ * 观察者
+ * @param {姓名} name 
+ */
+function Observer(name) {
+    this.name = name;
+    this.Update = function(context) {
+        console.log(`${name} 接收到了消息：${context}`);
+    }
+}
+
+/**
  * 观察者列表
  */
 function ObserverList() {
@@ -78,14 +89,14 @@ ObserverList.prototype.RemoveIndexAt = function(index) {
  * @param {父} obj 
  * @param {子} extension 
  */
-function extent(parent, child) {
-    /* for (var key in obj) {
+function extend(parent, child) {
+    for (var key in parent) {
         child[key] = parent[key];
-    } */
-    extension = {
+    }
+    /* child = {
         ...child,
         ...parent,
-    }
+    } */
 }
 
 /**
@@ -94,3 +105,27 @@ function extent(parent, child) {
 function Subject() {
     this.observers = new ObserverList();
 }
+
+/**
+ * 向目标的观察者列表中添加观察者
+ * @param {被添加的观察者} observer 
+ */
+Subject.prototype.AddObserver = function(observer) {
+    this.observers.Add(observer);
+}
+
+/**
+ * 从目标的观察者列表中删除某个观察者
+ * @param {被删除的观察者} observer 
+ */
+Subject.prototype.RemoveObserver = function(observer) {
+    this.observers.RemoveIndexAt(this.observers.IndexOf(observer, 0));
+}
+
+Subject.prototype.Notify = function(context) {
+    var observerCount = this.observers.Count();
+    for (let i = 0; i < observerCount; i++) {
+        this.observers.Get(i).Update(context);
+    }
+}
+
