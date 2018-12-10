@@ -9,6 +9,21 @@
     <!-- <script src="https://unpkg.com/vuex@2.4.0"></script> -->
     <script src="./js/vue-router.js"></script>
     <script src="./js/vuex.js"></script>
+    <style>
+        table,
+        table tr th,
+        table tr td {
+        border: 1px solid #0094ff;
+        }
+
+        table {
+        width: 200px;
+        min-height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-collapse: collapse;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,14 +40,52 @@
                 </li>
             </ul>
         </p>
+        <table>
+            <thead>
+              <tr>
+                <th >头</th>
+                <th >头</th>
+                <th >头</th>
+                <th >头</th>
+                <th >头</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(poi, index) in goods">
+                    <td v-if="!goods[index-1] || goods[index-1].poiId !== goods[index].poiId" :rowspan="(goods[index+1] && goods[index].poiId === goods[index+1].poiId) ? '2' : ''">{{poi.goodsName}}{{poi.poiId}}</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                    <td>内容</td>
+                </tr>
+            </tbody>
+          </table>
     </div>
     <script>
         // Vue.use(Vuex);
         //Vue实例
-        const app = new Vue({ }).$mount('#app');
+        const app = new Vue({
+            data () {
+                return {
+                    goods: [
+                        {poiName: '店名', poiId: 12, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 12, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 122, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 123, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 123, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 124, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 124, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 125, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 126, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 126, goodsName: '商品名'},
+                        {poiName: '店名', poiId: 127, goodsName: '商品名'}
+                    ]
+                };
+            }
+        }).$mount('#app');
         const store = new Vuex.Store({
             state: {
-                count: 0
+                count: 0,
             },
             mutations: {
                 increment(state) {
