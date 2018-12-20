@@ -27,16 +27,16 @@ var option = {
   dataZoom: [
       {
           type: 'slider',
-          show: false,
-          start: 0,
-          end: 50,
+          show: true,
+          start: 50,
+          end: 100,
           handleSize: 8
-      },
+      }/* ,
       {
           type: 'inside',
-          start: 9,
+          start: 0,
           end: 100
-      },
+      }, */
   ],
   series : [
       {
